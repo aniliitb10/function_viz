@@ -1,0 +1,10 @@
+com.example.Person#details
+com.example.Person#to_string
+com.example.Person#get_first_name, com.example.Person#get_second_name
+
+com.example.Person#get_first_name
+com.string.Utils#title_case
+
+
+com.example.Person#get_second_name
+com.string.Utils#title_case
