@@ -21,20 +21,14 @@ class Method:
     def _get_tool_tip(self):
         return f'class: {self.class_name}, package: {self.package}'
 
-    def _generate_class_node(self) -> pydot.Node:
-        return pydot.Node(name=f"{self.package}.{self.class_name}", label=self.class_name, shape='rectangle')
-
     def _generate_method_node(self) -> pydot.Node:
-        return pydot.Node(name=self.id, label=self.name, shape='ellipse', tooltip=self._get_tool_tip())
+        single_name = f'<{self.name}<BR /><FONT POINT-SIZE="10">class:{self.class_name}</FONT>>'
+        return pydot.Node(name=self.id, label=single_name, shape='ellipse', tooltip=self._get_tool_tip())
 
     def add_to_graph(self, graph: pydot.Graph):
-        class_node: pydot.Node = self._generate_class_node()
         method_node: pydot.Node = self._generate_method_node()
 
-        # Now adding both nodes and an edge from class_node to method_node
-        graph.add_node(class_node)
         graph.add_node(method_node)
-        graph.add_edge(pydot.Edge(class_node.get_name(), method_node.get_name(), color='blue', style='dashed'))
 
     def __repr__(self):
         return f'package:{self.package}, class:{self.class_name}, method:{self.name}'
